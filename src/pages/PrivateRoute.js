@@ -1,15 +1,16 @@
 import { Redirect, Route } from "react-router";
 import { useAuthContext } from "../context/AuthContext";
 
-export default function PrivateRoute({ children, ...rest }) {
 
-    const { isAuthenticated } = useAuthContext();
+export default function AdminRoute({ children, ...rest }) {
+
+    const { isAuthenticated, isAdmin } = useAuthContext();   
 
     return (
         <Route {...rest} render={() => {
-            return isAuthenticated
+            return isAuthenticated && isAdmin()
                 ? children
-                : <Redirect exact to="/" />
+                : <Redirect exact to="/login" />
         }} />
     )
 }

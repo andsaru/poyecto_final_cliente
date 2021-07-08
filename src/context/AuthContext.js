@@ -28,7 +28,7 @@ export default function AuthContext({children}) {
     const setToken = token => localStorage.setItem("TOKEN_KEY", token);
     const removeToken = () => localStorage.removeItem("TOKEN_KEY");
 
-    const isAdmin = () => loginUser?.role === "ADMIN";
+    const isAdmin = () => loginUser.roles.includes("ROLE_ADMIN");
 
     const signIn = (token, user) => {
         /**
@@ -111,11 +111,11 @@ export default function AuthContext({children}) {
         getAuthHeaders
     };
 
-    /**
-     * Envuelve a todos los hijos con el Provider del contexto, enviando 
-     * por value un objeto con todas las propiedades / funciones
-     * que se quieran exponer en el árbol.
-     */
+    // /**
+    //  * Envuelve a todos los hijos con el Provider del contexto, enviando 
+    //  * por value un objeto con todas las propiedades / funciones
+    //  * que se quieran exponer en el árbol.
+    //  */
 
     return (
         <LoginContext.Provider value={contextValue}>

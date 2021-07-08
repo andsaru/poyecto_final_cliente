@@ -2,6 +2,7 @@ import { Redirect, useHistory } from "react-router";
 import { LOGIN_URL } from "../config/config";
 import { useForm } from "../hooks/useForm";
 import { useAuthContext } from "../context/AuthContext";
+import jwt_decode from "jwt-decode";
 
 import './styles/index.css';
 
@@ -23,7 +24,11 @@ export default function Login() {
         const data = await response.json();
         
         if(response.status >= 200 && response.status < 300) {
-            signIn(data.token, data.user);
+            
+            const token = data.token;
+            const user = jwt_decode(token);
+            
+            signIn(token, user);
             history.push("/dashboard")
         } else {
             alert("Login incorrecto");
