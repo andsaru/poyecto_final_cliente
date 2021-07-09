@@ -18,7 +18,7 @@ export default function Navbar() {
 
     // Podríamos hacerlo directamente en el JSX con el operador tenario en lugar de crear dos constantes
     const loginButton = <li><NavLink exact to="/" className="btn btn-success">Login</NavLink></li>;
-    const logoutButton = <button onClick={handleSignOut} className="btn btn-warning">Log out</button>;
+    const logoutButton = <button exact to="/" onClick={handleSignOut} className="btn btn-warning">Log out</button>;
 
     return (
         <nav className="navbar navbar-expand navbar-light bg-light">

@@ -1,0 +1,70 @@
+.Appb {
+  text-align: center;
+    /* <a href="https://www.freepik.es/fotos/fondo">Foto de Fondo creado por rawpixel.com - www.freepik.es</a> */
+    background-image: url("background.jpg");
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    color: white;
+}
+
+.boxb {
+  position: absolute;
+  cursor: move;
+  color: black;
+  background-color: white;
+  max-width: 215px;
+  overflow-wrap: break-word;
+  border-radius: 5px;
+  padding: 1em;
+  margin: auto;
+  user-select: none;
+}
+
+#new-item {
+  user-select: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.inputb {
+  border-radius: 5px 0px 0px 5px;
+  color: white;
+  font-size: 1.3em;
+  background-color: transparent;
+  padding: 0.5em;
+}
+
+.inputb:focus {
+  outline: none;
+}
+
+.buttonb {
+  cursor: pointer;
+  background-color: gray;
+  font-size: 1em;
+  padding: 0.7em;
+  border-radius: 0px 5px 5px 0px;
+}
+
+.buttonb:hover {
+  background-color: rgb(173, 162, 162);
+}
+
+#delete {
+  font-size: 0.6em;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  border: none;
+}
+
+#delete:hover {
+  color: rgb(255, 55, 55);
+}
