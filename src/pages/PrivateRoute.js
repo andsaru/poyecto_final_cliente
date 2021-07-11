@@ -10,7 +10,7 @@ export default function AdminRoute({ children, ...rest }) {
         <Route {...rest} render={() => {
             return isAuthenticated && isAdmin()
                 ? children
-                : <Redirect exact to="/login" />
+                : <Redirect exact to="/dashboard" />
         }} />
     )
 }

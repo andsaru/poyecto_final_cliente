@@ -21,8 +21,8 @@ export default function Router() {
               <Navbar />
               
               <Route path="/public" component={Public} />
-              <PrivateRoute path='/dashboard'><Dashboard /></PrivateRoute> {/* Only for logged in users */}
-              <PrivateRoute path='/admin'><Admin /></PrivateRoute> {/* Only for logged in users who are admins */}
+              <Route path='/dashboard'><Dashboard /></Route> {/* Only for logged in users */}
+              <PrivateRoute path='/admin'></PrivateRoute> {/* Only for logged in users who are admins */}
               {/* <Route><h3 className="text-center pt-3">Esta página no existe</h3></Route> */}
               </div>  
           </Switch>
