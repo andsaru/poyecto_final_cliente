@@ -9,6 +9,8 @@ export default function Dashboard() {
     const { signOut, getAuthHeaders, loginUser, isAdmin } = useAuthContext();
     const [privateMessage, setPrivateMessage] = useState("");
 
+
+
     return (
 
             <main>

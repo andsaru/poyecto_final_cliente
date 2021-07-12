@@ -22,7 +22,7 @@ export default function Router() {
               
               <Route path="/public" component={Public} />
               <Route path='/dashboard'><Dashboard /></Route> {/* Only for logged in users */}
-              <PrivateRoute path='/admin'></PrivateRoute> {/* Only for logged in users who are admins */}
+              <PrivateRoute path='/admin'><Admin /></PrivateRoute> {/* Only for logged in users who are admins */}
               {/* <Route><h3 className="text-center pt-3">Esta página no existe</h3></Route> */}
               </div>  
           </Switch>
