@@ -11,115 +11,53 @@ import '../styles/dashboard.css';
 export default function Admin() {
 
   const { getAuthHeaders, loginUser } = useAuthContext();
-  const [adminMessage, setAdminMessage] = useState("");
-
-  const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
-  const [classShift, setClassShift] = useState("");
-  const [shiftDuration, setShiftDuration] = useState("");
-  // const [state, postUser] = useForm();
-
-  const handleSubmit = async e => {
-    e.preventDefault();
-
-    const options = {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(email, firstName, lastName, password, phone, classShift, shiftDuration)
-    }
-    const response = await fetch(EMPLOYEE_URL, options);
-    const data = await response.json();
-  }
-
-  function handleInputChange(event) {
-    if (event.target.name === "email") {
-      setEmail(event.target.value);
-    }
-    if (event.target.name === "first_name") {
-      setFirstName(event.target.value);
-    }
-    if (event.target.name === "last_name") {
-      setLastName(event.target.value);
-    }
-
-    if (event.target.name === "password") {
-      setPassword(event.target.value);
-    }
-
-    if (event.target.name === "phone") {
-      setPhone(event.target.value);
-    }
-
-    if (event.target.name === "class_shift") {
-      setClassShift(event.target.value);
-    }
-
-    if (event.target.name === "shift_duration") {
-      setShiftDuration(event.target.value);
-    }
-  }
+  const [admin_users, setAdmin_Users] = useState([]);
 
   useEffect(() => {
     const options = { headers: getAuthHeaders() };
 
-    fetch(ADMIN_URL, options)
+    fetch(EMPLOYEE_URL, options)
       .then(response => {
         if (!response.ok) throw new Error(response.statusText)
         return response.json();
       })
-      .then(data => setAdminMessage(data.message))
+      .then(data => setAdmin_Users(data))
       .catch(err => {
         console.log(err, "You are not authorized to see this.");
         return <Redirect to="/" />;
       });
   }, [loginUser, getAuthHeaders])
 
-  return (
+    return (
 
-    <div className="container text-center">
-      <form onSubmit={handleSubmit}>
-        <p>
-          <label>Email</label>
-          <input onChange={handleInputChange} value={email} name="email" />
-        </p>
-        <p>
-          <label>First Name</label>
-          <input onChange={handleInputChange} value={firstName} name="first_name" />
-        </p>
-        <p>
-          <label>Last Name</label>
-          <input onChange={handleInputChange} value={lastName} name="last_name" />
-        </p>
+        <div className="container text-center pt-5">
+            {/* <h3>Email: {admin_users.email} </h3>
+            <h3>Código: {admin_users.first_name} </h3>
+            <h3>Nombre: {admin_users.last_name}</h3>
+            <h3>Contraseña: {admin_users.password}</h3>
+            <h3>Teléfono: {admin_users.phone}</h3>
+            <h3>Turno: {admin_users.class_shift}</h3>
+            <h3>Horas: {admin_users.shift_duration}</h3> */}
 
-        <p>
-          <label>Password</label>
-          <input onChange={handleInputChange} value={password} name="password" />
-        </p>
-
-        <p>
-          <label>Phone</label>
-          <input onChange={handleInputChange} value={phone} name="phone" />
-        </p>
-
-        <p>
-          <label>Class Shift</label>
-          <input onChange={handleInputChange} value={classShift} name="class_shift" />
-        </p>
-
-        <p>
-          <label>Shift Duration</label>
-          <input onChange={handleInputChange} value={shiftDuration} name="shift_duration" />
-        </p>
-        <button type="submit">Create user</button>
-        <br />
-        <Link to ='/AdminGet' ><button> ir a get</button></Link>
-
-      </form>
-    </div>
-
-
-  )
+            <div className="row">
+                {admin_users.map((admin_users) => {
+                    return (
+                        <ul className="list-group mb-3 col-12 col-sm-6 col-xl-3" key={admin_users.id} >
+                            <li className="list-group-item active">Empleado </li>
+                            <li className="list-group-item">{admin_users.email}</li>
+                            <li className="list-group-item">{admin_users.first_name}</li>
+                            <li className="list-group-item">{admin_users.last_name}</li>
+                            
+                            <li className="list-group-item">{admin_users.phone}</li>
+                            
+                            <li className="list-group-item">{admin_users.class_shift}, {admin_users.shift_duration}</li>
+                            <li className="list-group-item">
+                           <button className="btn btn-warning" /* onClick={removeContact(admin_user.id)} */>Eliminar</button>
+                            </li>
+                        </ul>
+                    );
+                })}
+            </div>
+        </div>
+    );
 }

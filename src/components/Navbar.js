@@ -13,7 +13,7 @@ export default function Navbar() {
         */
 
         signOut();
-        history.push("/login");
+        history.push("/");
     };
 
     // Podríamos hacerlo directamente en el JSX con el operador tenario en lugar de crear dos constantes
