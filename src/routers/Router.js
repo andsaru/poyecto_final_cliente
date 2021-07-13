@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import Public from "../pages/public/Public";
 import Dashboard from "../pages/Dashboard";
-import Admin from "../pages/Admin";
+import Admin from "../pages/admin/Admin";
 import PrivateRoute from "../pages/PrivateRoute";
 
 import Navbar from "../components/Navbar";
