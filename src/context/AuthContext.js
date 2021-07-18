@@ -63,43 +63,43 @@ export default function AuthContext({children}) {
         return {...headers, Authorization: `Bearer ${getToken()}`}
     };
 
-    useEffect(() => {
-        /**
-         * Al utilizar este componente en App.js, se montará en cuanto accedamos
-         * a la aplicación, ejecutando, por tanto, este useEffect. Útil cuando
-         * volvemos a la aplicación tras haber salido o haber cerrado el navegador.
-         * 
-         * Comprueba que existe un token en el localStorage y lo valida contra el servidor
-         * para añadir una capa de seguridad necesaria, ya que:
-         * 
-         * ¿Qué pasa si tengo un token guardado pero ha expirado?
-         * ¿Qué pasa si tengo un token válido pero han eliminado mi usuario de la BBDD?
-         * ¿Qué pasa si tengo un token válido pero me han cambiado los roles u otra información importante?
-         * 
-         * En ninguno de los casos debería poder acceder a zonas privadas de la web, por lo
-         * que una validación contra el servidor y actualización de la información es siempre necesaria.
-         */
+    // useEffect(() => {
+    //     /**
+    //      * Al utilizar este componente en App.js, se montará en cuanto accedamos
+    //      * a la aplicación, ejecutando, por tanto, este useEffect. Útil cuando
+    //      * volvemos a la aplicación tras haber salido o haber cerrado el navegador.
+    //      * 
+    //      * Comprueba que existe un token en el localStorage y lo valida contra el servidor
+    //      * para añadir una capa de seguridad necesaria, ya que:
+    //      * 
+    //      * ¿Qué pasa si tengo un token guardado pero ha expirado?
+    //      * ¿Qué pasa si tengo un token válido pero han eliminado mi usuario de la BBDD?
+    //      * ¿Qué pasa si tengo un token válido pero me han cambiado los roles u otra información importante?
+    //      * 
+    //      * En ninguno de los casos debería poder acceder a zonas privadas de la web, por lo
+    //      * que una validación contra el servidor y actualización de la información es siempre necesaria.
+    //      */
         
-        const options = {
-            headers: getAuthHeaders()
-        };
+    //     const options = {
+    //         headers: getAuthHeaders()
+    //     };
 
-        // Si ni siquiera hay token guardado, no hacemos la petición
-        getToken() && fetch(SESSION_URL, options)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(response.statusText);
-                }
-                return response.json();
-            })
-            .then(data => signIn(data.token, data.user)) // Token e info renovada
-            .catch(() => signOut()); // Limpiamos la sesión
+    //     // Si ni siquiera hay token guardado, no hacemos la petición
+    //     getToken() && fetch(SESSION_URL, options)
+    //         .then(response => {
+    //             if (!response.ok) {
+    //                 throw new Error(response.statusText);
+    //             }
+    //             return response.json();
+    //         })
+    //         .then(data => signIn(data.token, data.user)) // Token e info renovada
+    //         .catch(() => signOut()); // Limpiamos la sesión
         
-        // El siguiente comentario (eslint...) es para deshabilitar el warning de "missing dependencies"
-        // ya que no necesitamos incluir las dependencias que nos pide en este caso.
+    //     // El siguiente comentario (eslint...) es para deshabilitar el warning de "missing dependencies"
+    //     // ya que no necesitamos incluir las dependencias que nos pide en este caso.
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, []);
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    //     }, []);
 
     const contextValue = {
         loginUser,

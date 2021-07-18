@@ -4,7 +4,7 @@ import { useAuthContext } from "../../context/AuthContext";
 
 import React from 'react';
 
-export default function AdminPost() {
+export default function AdminPost({}) {
 
     const formInitialState = { email: "", first_name: "", last_name: "", password: "", phone: "", class_shift: "", shift_duration: "" };
     const [form, handleInputChange] = useForm(formInitialState)
