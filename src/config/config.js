@@ -7,6 +7,7 @@
  const BASE_API_URL = `http://localhost:${PORT}/api/`;
  const LOGIN_URL = BASE_API_URL + "login_check";
  const EMPLOYEE_URL = BASE_API_URL + "amazing-employees";
+ const ANNOUNCE_URL = BASE_API_URL + "announcements";
  const SESSION_URL = BASE_API_URL + "session";
  const PRIVATE_URL = BASE_API_URL + "private";
  const ADMIN_URL = BASE_API_URL + "admin";

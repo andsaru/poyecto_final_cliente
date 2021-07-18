@@ -2,8 +2,10 @@ import { useForm } from "../../hooks/useForm";
 import { EMPLOYEE_URL } from "../../config/config";
 import { useAuthContext } from "../../context/AuthContext";
 import { useState, useEffect } from "react";
+import { Button, Modal } from 'react-bootstrap'
 
 import React from 'react';
+import { render } from "react-dom";
 
 export default function AdminPut({ admin_user }) {
 
@@ -43,12 +45,73 @@ export default function AdminPut({ admin_user }) {
         const data = await response.json();
     }
 
+    const [modal, setModal] = useState(false);
+
+    const openModal = () => setModal(true);
+    const closeModal = () => setModal(false);
+
+
+
+
+
 
     return (
-        <div >
-            <h3>Modificar Empleado</h3>
 
-            <form onSubmit={handleSubmit} >
+        // <div >
+        //     <h3>Modificar Empleado</h3>
+
+        //     <form onSubmit={handleSubmit} >
+        //         <div>
+        //             <label for="nameInput">email</label>
+        //             <input onChange={handleChange} value={form.email} name="email" />
+        //         </div>
+        //         <div>
+        //             <label for="descriptionInput">Código</label>
+        //             <input onChange={handleChange} value={form.first_name} name="first_name" />
+        //         </div>
+        //         <div>
+        //         </div>
+        //         <div>
+        //             <label for="durationInput">Nombre</label>
+        //             <input onChange={handleChange} value={form.last_name} name="last_name" />
+        //         </div>
+        //         <div>
+        //             <label for="durationInput">Contraseña</label>
+        //             <input onChange={handleChange} value={form.password} name="password" required />
+        //         </div>
+        //         <div>
+        //             <label for="priceInput">Teléfono</label>
+        //             <input onChange={handleChange} value={form.phone} name="phone" />
+        //         </div>
+        //         <div>
+        //             <label for="priceInput">Turno</label>
+        //             <input onChange={handleChange} value={form.class_shift} name="class_shift" />
+        //         </div>
+        //         <div>
+        //             <label for="priceInput">Horas</label>
+        //             <input onChange={handleChange} value={form.shift_duration} name="shift_duration" />
+        //         </div>
+        //         <br />
+        //         <div className="d-grid gap-2 d-md-flex justify-content-md-center">
+        //             <button className="btn btn-outline-success me-md-2" type="button">Actualizar</button>
+        //             <button className="btn btn-outline-danger" type="button" onClick={handleDelete}>Eliminar</button>
+        //         </div>
+        //     </form>
+
+        // </div>
+
+
+        <div>
+            <Button variant="primary" onClick={openModal}>
+                Launch demo modal
+            </Button>
+
+            <Modal show={modal} onHide={closeModal}>
+                <Modal.Header >
+                    <Modal.Title>Modal heading</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <form onSubmit={handleSubmit} >
                 <div>
                     <label for="nameInput">email</label>
                     <input onChange={handleChange} value={form.email} name="email" />
@@ -79,13 +142,17 @@ export default function AdminPut({ admin_user }) {
                     <label for="priceInput">Horas</label>
                     <input onChange={handleChange} value={form.shift_duration} name="shift_duration" />
                 </div>
-                <br />
-                <div className="d-grid gap-2 d-md-flex justify-content-md-center">
-                    <button className="btn btn-outline-success me-md-2" type="button">Actualizar</button>
-                    <button className="btn btn-outline-danger" type="button" onClick={handleDelete}>Eliminar</button>
-                </div>
-            </form>
+                </form>
+                <button className="btn btn-outline-success me-md-2" type="button" onClick={handleSubmit} >Actualizar</button>
+                     <button className="btn btn-outline-danger" type="button" onClick={handleDelete}>Eliminar</button>
+                </Modal.Body>
+
+                
+            </Modal>
 
         </div>
+
     )
+
+
 }

@@ -32,7 +32,6 @@ export default function Admin() {
       });
   }, [loginUser, getAuthHeaders])
 
-  
 
   return (
 
@@ -50,10 +49,11 @@ export default function Admin() {
               <li className="list-group-item">{admin_user.class_shift}, {admin_user.shift_duration}</li>
               <li className="list-group-item">
 
-                <div><AdminPut admin_user={admin_user} /></div>
 
-                {/* <div><AdminPut admin_user={admin_user} /></div> */}
-                {/* <button className="btn btn-warning" id={admin_user.id} onClick={handleDelete}>Eliminar</button> */}
+
+                    <div><AdminPut admin_user={admin_user} /></div>
+
+             
 
               </li>
             </ul>
